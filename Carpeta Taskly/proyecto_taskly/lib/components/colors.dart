@@ -13,6 +13,7 @@ class AppColors {
 
   static const Color White = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+   static const Color slack = Color(0xFF000000);
 
   static const Color yes = Color(0xFF14A619);
   static const Color no = Color(0xFFBC1313);
