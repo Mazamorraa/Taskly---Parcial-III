@@ -99,7 +99,7 @@ class _PropuestaEspecialistaState extends State<PropuestaEspecialista> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 8),
+                        padding: EdgeInsets.only(left: 15, top: 8),
                         child: MyText(
                             label: 'Service',
                             size: 20,

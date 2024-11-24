@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:proyecto_taskly/components/colors.dart';
-import 'propuestaEspecialista.dart';
 
 class Serviciocompleto extends StatefulWidget {
   static const String routeName = 'ServicioCompleto';
@@ -33,17 +32,17 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
           children: [
             Text(
               widget.nombre,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               widget.descripcion,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Precio: ${widget.precio}',
-              style: TextStyle(fontSize: 16, color: Colors.green),
+              style: const TextStyle(fontSize: 16, color: Colors.green),
             ),
           ],
         ),

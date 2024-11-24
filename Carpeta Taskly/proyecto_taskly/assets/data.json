@@ -19,12 +19,12 @@
           "estado": "Pendiente",
           "precioFinal": 45.0,
           "fechaSolicitud": "2024-11-11",
+          "direccion": "Calle Verdadera 456",
           "servicio": {
             "id": 501,
             "nombre": "Servicio Plomero",
             "descripcion": "Servicio de plomería profesional.",
-            "precio": 50.0,
-            "direccion": "Calle Verdadera 456"
+            "precio": 50.0
           }
         }
       ]
@@ -44,8 +44,7 @@
           "id": 501,
           "nombre": "Servicio Plomero",
           "descripcion": "Servicio de plomería profesional.",
-          "precio": 50.0,
-          "direccion": "Calle Verdadera 456"
+          "precio": 50.0
         }
       ],
       "solicitudes": [
@@ -58,12 +57,12 @@
           "estado": "Pendiente",
           "precioFinal": 45.0,
           "fechaSolicitud": "2024-11-11",
+          "direccion": "Calle Verdadera 456",
           "servicio": {
             "id": 501,
             "nombre": "Servicio Plomero",
             "descripcion": "Servicio de plomería profesional.",
-            "precio": 50.0,
-            "direccion": "Calle Verdadera 456"
+            "precio": 50.0
           }
         }
       ]
@@ -74,8 +73,7 @@
       "id": 501,
       "nombre": "Servicio Plomero",
       "descripcion": "Servicio de plomería profesional.",
-      "precio": 50.0,
-      "direccion": "Calle Verdadera 456"
+      "precio": 50.0
     }
   ],
   "solicitudes": [
@@ -92,12 +90,12 @@
       "estado": "Pendiente",
       "precioFinal": 45.0,
       "fechaSolicitud": "2024-11-11",
+      "direccion": "Calle Verdadera 456",
       "servicio": {
         "id": 501,
         "nombre": "Servicio Plomero",
         "descripcion": "Servicio de plomería profesional.",
-        "precio": 50.0,
-        "direccion": "Calle Verdadera 456"
+        "precio": 50.0
       }
     }
   ]

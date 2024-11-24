@@ -57,7 +57,7 @@ class _LlenardatosState extends State<Llenardatos> {
             ],
           ),
         ),
-        drawer: Drawer_menu(username: ''),
+        drawer: const Drawer_menu(username: ''),
         
         body: Padding(
           padding: const EdgeInsets.only(top: 15, left: 10),
@@ -69,7 +69,7 @@ class _LlenardatosState extends State<Llenardatos> {
               Navigator.pushReplacementNamed(context, MyHomePage.routeName);
               
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: AppColors.black, 
               size: 25,
@@ -137,10 +137,10 @@ class _LlenardatosState extends State<Llenardatos> {
                       ),
                       const SizedBox(height: 30),
               
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                        const MyText(
+                        MyText(
                           color: AppColors.black,
                           fontWeight: FontWeight.bold,
                           label: 'When need to be done?',
@@ -149,7 +149,7 @@ class _LlenardatosState extends State<Llenardatos> {
                         Icon(Icons.calendar_month, size: 20,)
                         
                       ]),
-                      SizedBox(height: 55,),
+                      const SizedBox(height: 55,),
               
                       const Align(
                           alignment: Alignment.centerLeft,
@@ -174,7 +174,7 @@ class _LlenardatosState extends State<Llenardatos> {
                           iconColor: AppColors.black,
                         ),
                       ),
-                      SizedBox(height: 100,),
+                      const SizedBox(height: 100,),
               
               
               

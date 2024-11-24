@@ -1,4 +1,3 @@
-import 'package:proyecto_taskly/domain/entities/servicio.dart';
 import 'package:proyecto_taskly/domain/entities/solicitudes.dart';
 
 abstract class Usuario {
@@ -9,7 +8,7 @@ abstract class Usuario {
   String telefono;
   String direccion;
   double calificacion;
-  List<Solicitudes> solicitudes;
+  List<Solicitud> solicitudes;
 
   Usuario({
     required this.id,
@@ -25,38 +24,8 @@ abstract class Usuario {
 
 }
 
-class Cliente extends Usuario {
-  Cliente({
-    required super.id,
-    required super.nombre,
-    required super.email,
-    required super.contrasena,
-    required super.telefono,
-    required super.direccion,
-    required super.calificacion,
-    required super.solicitudes,
-  });
-
-}
-
-class Especialista extends Usuario {
-  String profesion;
-  List<Servicio> servicios;
-
-  Especialista({
-    required super.id,
-    required super.nombre,
-    required super.email,
-    required super.contrasena,
-    required super.telefono,
-    required super.direccion,
-    required super.calificacion,
-    required super.solicitudes,
-    required this.profesion,
-    required this.servicios,
-  });
 
 
-}
+
 
 

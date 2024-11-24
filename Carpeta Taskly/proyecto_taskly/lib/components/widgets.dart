@@ -384,7 +384,7 @@ class Perfil extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
       
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
