@@ -4,6 +4,7 @@ import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
 import 'package:proyecto_taskly/domain/entities/solicitudes.dart';
 import 'package:intl/intl.dart';
+import 'package:proyecto_taskly/share_pref/preferenciasTaskly.dart';
 
 class Orders extends StatefulWidget {
   const Orders({super.key});
@@ -18,12 +19,15 @@ class _OrdersState extends State<Orders> {
   @override
   void initState() {
     super.initState();
-    _solicitudesFuture = SolicitudRepositoryImpl().obtenerSolicitudes();
-    // Prueba para verificar si se llama al método correctamente.
-    print('Llamada a obtenerSolicitudes iniciada');
+    _solicitudesFuture = cargarSolicitudesDesdePrefs(); // Nueva función
   }
 
-  
+  Future<List<Solicitud>> cargarSolicitudesDesdePrefs() async {
+    final PreferenciasTaskly prefs = PreferenciasTaskly();
+    await prefs.initPrefs();
+    return await prefs
+        .getSolicitudes(); // Carga solicitudes desde SharedPreferences
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_taskly/adapters/ui/llenarSolicitud.dart';
 import 'package:proyecto_taskly/adapters/ui/orders.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
@@ -47,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 5, right: 5),
                       child: Container(
                         width: 500,
                         height: 89,
@@ -62,19 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 25.0, right: 0, top: 10, bottom: 5),
-                                  child: Container(
-                                    width: 65.0,
-                                    height: 65.0,
-                                    decoration: const BoxDecoration(
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: const Icon(Icons.account_circle,
-                                          size: 70),
-                                    ),
+                                      left: 15.0, right: 0, top: 10, bottom: 5),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    child: Text(widget.usuario.nombre[0]),
                                   ),
                                 ),
                                 Column(
@@ -82,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   children: [
                                     Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 25, top: 20),
+                                            left: 18, top: 15),
                                         child: Row(children: [
                                           MyText(
                                             label: widget.usuario.nombre,
@@ -92,7 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ),
                                         ])),
                                     const Padding(
-                                      padding: EdgeInsets.only(left: 25, top: 0),
+                                      padding:
+                                          EdgeInsets.only(left: 17, top: 0),
                                       child: MyText(
                                         label: 'Looking for specialist',
                                         size: 12,
@@ -101,8 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     const Padding(
-                                      padding: EdgeInsets.only(left: 25),
-                                      child: RatingStars(rating: 3.5),
+                                      padding: EdgeInsets.only(left: 17),
+                                      child: RatingStars(rating: 5),
                                     )
                                   ],
                                 ),
@@ -141,71 +135,120 @@ class _MyHomePageState extends State<MyHomePage> {
                         iconColor: AppColors.black,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Plumber',
                                   numeroEspecialistas: '5000 specialist',
                                   icon: Icons.plumbing,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {'servicio': 'Plumber'},
+                                    );
+                                  },
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Housekeeper',
-                                  numeroEspecialistas: '4700 specialist',
+                                  numeroEspecialistas: '5000 specialist',
                                   icon: Icons.house,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {'servicio': 'Housekeeper'},
+                                    );
+                                  },
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Carta(
-                                  descripcion: 'Computer Repairs',
-                                  numeroEspecialistas: '4000 specialist',
+                                  descripcion: 'Computer repairs',
+                                  numeroEspecialistas: '5000 specialist',
                                   icon: Icons.computer,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {
+                                        'servicio': 'Computer repairs'
+                                      }, // Enviar el servicio como argumento
+                                    );
+                                  },
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Vehicle repairs',
-                                  numeroEspecialistas: '3750 specialist',
+                                  numeroEspecialistas: '5000 specialist',
                                   icon: Icons.car_crash,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {
+                                        'servicio': 'Vehicle repairs'
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Carta(
-                                  descripcion: 'Air conditioner maintenance',
-                                  numeroEspecialistas: '4000 specialist',
+                                  descripcion: 'Air condicioner maintenance',
+                                  numeroEspecialistas: '5000 specialist',
                                   icon: Icons.air,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {
+                                        'servicio':
+                                            'Air condicioner maintenance'
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Loaders',
-                                  numeroEspecialistas: '3750 specialist',
-                                  icon: Icons.house,
+                                  numeroEspecialistas: '5000 specialist',
+                                  icon: Icons.house_sharp,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Llenardatos.routeName,
+                                      arguments: {'servicio': 'Loaders'},
+                                    );
+                                  },
                                 ),
                               ),
                             ],
@@ -282,8 +325,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
           selectedItemColor: Colors.grey,
-          selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.grey),
+          selectedLabelStyle:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
         ),
       ),
     );

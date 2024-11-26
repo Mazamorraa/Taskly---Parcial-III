@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_taskly/adapters/ui/llenarSolicitud.dart';
 import 'package:proyecto_taskly/adapters/ui/servicioCompleto.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/size_config.dart';
@@ -158,20 +157,20 @@ class Carta extends StatelessWidget {
   final String descripcion;
   final String numeroEspecialistas;
   final IconData icon;
+  final VoidCallback onTap; // Callback personalizado
 
   const Carta({
     super.key,
     required this.descripcion,
     required this.numeroEspecialistas,
     required this.icon,
+    required this.onTap, // Requiere callback para manejar onTap
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushReplacementNamed(context, Llenardatos.routeName);
-      },
+      onTap: onTap, // Llamada al callback
       child: Container(
         margin: const EdgeInsets.all(8.0),
         width: getProportionateScreenWidth(150),
@@ -192,7 +191,7 @@ class Carta extends StatelessWidget {
                 color: Colors.black87,
               ),
               const SizedBox(height: 10),
-              Flexible( // Usar Flexible para evitar el desbordamiento
+              Flexible(
                 child: Text(
                   descripcion,
                   style: const TextStyle(
@@ -200,8 +199,8 @@ class Carta extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
-                  overflow: TextOverflow.ellipsis, // Añadir overflow para truncar texto
-                  maxLines: 2, // Limitar el número de líneas
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
               const SizedBox(height: 5),
@@ -212,8 +211,8 @@ class Carta extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: AppColors.Subtitulos,
                 ),
-                overflow: TextOverflow.ellipsis, // Añadir overflow para truncar texto
-                maxLines: 1, // Limitar el número de líneas
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ],
           ),
@@ -393,6 +392,7 @@ class Perfil extends StatelessWidget {
       
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
+                
                 child: GestureDetector(
                   onTap: () => {
                     Navigator.push(

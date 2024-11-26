@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
+import 'package:proyecto_taskly/adapters/ui/VerificationPage_especialista.dart';
 import 'package:proyecto_taskly/adapters/ui/llenarSolicitud.dart';
 import 'package:proyecto_taskly/adapters/ui/mainScreen.dart';
 import 'package:proyecto_taskly/adapters/ui/peticionEspecialista.dart';
@@ -14,17 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Cliente usuarioCliente = Cliente(
-  id: 1,
-  nombre: 'Sebastian',
-  email: 'sebastian@example.com',
-  contrasena: 'password123',
-  telefono: '123456789',
-  direccion: '123 Calle Principal',
-  calificacion: 5,
-  solicitudes: [],
-);
+      id: 1,
+      nombre: 'Sebastian',
+      email: 'sebastian@example.com',
+      contrasena: 'password123',
+      telefono: '123456789',
+      direccion: '123 Calle Principal',
+      calificacion: 5,
+      solicitudes: [],
+    );
 
     return MaterialApp(
       title: '',
@@ -41,20 +41,24 @@ class MyApp extends StatelessWidget {
         RegisterPage.routeName: (context) =>
             const RegisterPage(title: 'Register'),
         MyHomePage.routeName: (context) =>
-            MyHomePage(title: 'Home', usuario: usuarioCliente), 
-        Llenardatos.routeName: (context) =>
-            Llenardatos(title: 'Datos', usuario: usuarioCliente,),
+            MyHomePage(title: 'Home', usuario: usuarioCliente),
+        Llenardatos.routeName: (context) => Llenardatos(
+              title: 'Datos',
+              usuario: usuarioCliente,
+              servicioSeleccionado: '',
+            ),
         Peticionespecialista.routeName: (context) =>
-            Peticionespecialista(title: 'Peticiones', usuario: usuarioCliente,),
+            Peticionespecialista(title: 'Peticiones', usuario: usuarioCliente),
         PropuestaEspecialista.routeName: (context) =>
-           PropuestaEspecialista(title: 'Propuesta', usuario: usuarioCliente,),
+            PropuestaEspecialista(title: 'Propuesta', usuario: usuarioCliente),
         Serviciocompleto.routeName: (context) => const Serviciocompleto(
               nombre: '',
               descripcion: '',
               precio: '',
             ),
+        VerificationPageEspecialista.routeName: (context) =>
+            const VerificationPageEspecialista()
       },
-      home: const Mainscreen(title: ''),
     );
   }
 }
