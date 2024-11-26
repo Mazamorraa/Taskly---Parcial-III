@@ -29,6 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final UsuarioRepository usuarioRepository = UsuarioRepositoryImpl();
   final ObtenerClientesUseCase obtenerClientesUseCase =
       ObtenerClientesUseCase(UsuarioRepositoryImpl());
+      
 
   Future<void> _registrarCliente() async {
   if (usernameController.text.isEmpty ||
@@ -44,6 +45,8 @@ class _RegisterPageState extends State<RegisterPage> {
     );
     return;
   }
+
+  
 
   try {
     final nuevoCliente = Cliente(

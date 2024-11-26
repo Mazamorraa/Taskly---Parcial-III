@@ -4,6 +4,8 @@ import 'package:proyecto_taskly/adapters/ui/peticionEspecialista.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/servicio.dart';
+import 'package:proyecto_taskly/domain/entities/solicitudes.dart';
 import 'package:proyecto_taskly/domain/entities/usuario.dart';
 import 'package:proyecto_taskly/size_config.dart';
 
@@ -21,9 +23,47 @@ class Llenardatos extends StatefulWidget {
 class _LlenardatosState extends State<Llenardatos> {
   TextEditingController descripcionController = TextEditingController();
   TextEditingController direccionController = TextEditingController();
-  DateTime? fechaController;
+  late DateTime fechaController;
   TextEditingController priceController = TextEditingController();
   final String servicio = 'Service';
+
+  Future<void> _registrarSolicitud() async {
+  if (descripcionController.text.isEmpty || direccionController.text.isEmpty || priceController.text.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Por favor, complete todos los campos'),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return;
+  }
+
+  // Crear una instancia de Servicio
+  final nuevoServicio = Servicio(
+    descripcion: descripcionController.text,
+    precio: int.parse(priceController.text), 
+    id: DateTime.now().millisecondsSinceEpoch, 
+    nombre: '',
+    
+  );
+
+  // Crear una instancia de Solicitud
+  /*final nuevaSolicitud = Solicitud(
+    id: DateTime.now().millisecondsSinceEpoch,
+    servicio: nuevoServicio,
+    especialistaSeleccionado: null, // Se seleccionará después
+  );
+
+  // Guardar en la lista de solicitudes del usuario
+  setState(() {
+    widget.usuario.solicitudes.add(nuevaSolicitud);
+  });*/
+
+  Navigator.pushReplacementNamed(context, Peticionespecialista.routeName);
+}
+
+  
+  
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

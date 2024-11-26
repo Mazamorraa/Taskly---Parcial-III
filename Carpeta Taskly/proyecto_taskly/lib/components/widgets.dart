@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_taskly/adapters/ui/llenarServicio.dart';
+import 'package:proyecto_taskly/adapters/ui/llenarSolicitud.dart';
 import 'package:proyecto_taskly/adapters/ui/servicioCompleto.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/size_config.dart';
@@ -169,14 +169,13 @@ class Carta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
-        Navigator.pushReplacementNamed(
-                        context, Llenardatos.routeName)
-      }, 
+      onTap: () {
+        Navigator.pushReplacementNamed(context, Llenardatos.routeName);
+      },
       child: Container(
         margin: const EdgeInsets.all(8.0),
         width: getProportionateScreenWidth(150),
-        height: getProportionateScreenHeight(150),
+        height: getProportionateScreenHeight(160),
         decoration: BoxDecoration(
           color: AppColors.TextField,
           borderRadius: BorderRadius.circular(12.0),
@@ -193,12 +192,16 @@ class Carta extends StatelessWidget {
                 color: Colors.black87,
               ),
               const SizedBox(height: 10),
-              Text(
-                descripcion,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Flexible( // Usar Flexible para evitar el desbordamiento
+                child: Text(
+                  descripcion,
+                  style: const TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis, // Añadir overflow para truncar texto
+                  maxLines: 2, // Limitar el número de líneas
                 ),
               ),
               const SizedBox(height: 5),
@@ -209,6 +212,8 @@ class Carta extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: AppColors.Subtitulos,
                 ),
+                overflow: TextOverflow.ellipsis, // Añadir overflow para truncar texto
+                maxLines: 1, // Limitar el número de líneas
               ),
             ],
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
-import 'package:proyecto_taskly/adapters/ui/llenarServicio.dart';
+import 'package:proyecto_taskly/adapters/ui/llenarSolicitud.dart';
 import 'package:proyecto_taskly/adapters/ui/mainScreen.dart';
 import 'package:proyecto_taskly/adapters/ui/peticionEspecialista.dart';
 import 'package:proyecto_taskly/adapters/ui/propuestaEspecialista.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   contrasena: 'password123',
   telefono: '123456789',
   direccion: '123 Calle Principal',
-  calificacion: 4.5,
+  calificacion: 5,
   solicitudes: [],
 );
 
