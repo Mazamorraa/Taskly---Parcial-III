@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_taskly/adapters/ui/AboutMePage_especialista.dart'; // Importa la pantalla
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
 import 'package:proyecto_taskly/adapters/ui/llenarServicio.dart';
 import 'package:proyecto_taskly/adapters/ui/mainScreen.dart';
@@ -8,16 +7,24 @@ import 'package:proyecto_taskly/adapters/ui/propuestaEspecialista.dart';
 import 'package:proyecto_taskly/adapters/ui/register.dart';
 import 'package:proyecto_taskly/adapters/ui/login.dart';
 import 'package:proyecto_taskly/adapters/ui/servicioCompleto.dart';
-import 'package:proyecto_taskly/adapters/ui/verificationPage_especialista.dart';
-import 'package:proyecto_taskly/adapters/ui/IdCardPage_especialista.dart';
-import 'package:proyecto_taskly/adapters/ui/CatalogOfServicesPage_especialista.dart';
-import 'package:proyecto_taskly/adapters/ui/CatalogOfServicesPage2_especialista.dart'; // Importa la nueva pantalla
+import 'package:proyecto_taskly/domain/entities/cliente.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Cliente usuarioCliente = Cliente(
+      id: 1,
+      nombre: 'Sebastian',
+      email: 'sebastian@example.com',
+      contrasena: 'password123',
+      telefono: '123456789',
+      direccion: '123 Calle Principal',
+      calificacion: 5,
+      solicitudes: [],
+    );
+
     return MaterialApp(
       title: '',
       debugShowCheckedModeBanner: false,
@@ -25,33 +32,26 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      initialRoute:
-          CatalogOfServicesPage2Especialista.routeName, // Ruta inicial
+      initialRoute: Mainscreen.routeName,
       routes: {
         Mainscreen.routeName: (context) =>
             const Mainscreen(title: 'Main Screen'),
-        Login.routeName: (context) => Login(
-              title: 'log in',
-            ),
+        Login.routeName: (context) => const Login(title: 'Log in'),
         RegisterPage.routeName: (context) =>
             const RegisterPage(title: 'Register'),
-        MyHomePage.routeName: (context) => const MyHomePage(title: 'Home'),
-        Llenardatos.routeName: (context) => const Llenardatos(title: 'datos'),
+        MyHomePage.routeName: (context) =>
+            MyHomePage(title: 'Home', usuario: usuarioCliente),
+        Llenardatos.routeName: (context) =>
+            Llenardatos(title: 'Datos', usuario: usuarioCliente),
         Peticionespecialista.routeName: (context) =>
-            const Peticionespecialista(title: 'peticiones'),
+            Peticionespecialista(title: 'Peticiones', usuario: usuarioCliente),
         PropuestaEspecialista.routeName: (context) =>
-            const PropuestaEspecialista(title: 'propuesta'),
-        Serviciocompleto.routeName: (context) =>
-            const Serviciocompleto(nombre: '', descripcion: '', precio: ''),
-        VerificationPageEspecialista.routeName: (context) =>
-            const VerificationPageEspecialista(),
-        AboutMeEspecialista.routeName: (context) => const AboutMeEspecialista(),
-        IdCardPageEspecialista.routeName: (context) =>
-            const IdCardPageEspecialista(),
-        CatalogOfServicesPageEspecialista.routeName: (context) =>
-            const CatalogOfServicesPageEspecialista(),
-        CatalogOfServicesPage2Especialista.routeName: (context) =>
-            const CatalogOfServicesPage2Especialista(), // Nueva pantalla registrada
+            PropuestaEspecialista(title: 'Propuesta', usuario: usuarioCliente),
+        Serviciocompleto.routeName: (context) => const Serviciocompleto(
+              nombre: '',
+              descripcion: '',
+              precio: '',
+            ),
       },
     );
   }

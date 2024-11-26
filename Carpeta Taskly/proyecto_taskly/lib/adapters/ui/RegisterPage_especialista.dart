@@ -22,16 +22,12 @@ class _RegisterPageEspecialistaState extends State<RegisterPageEspecialista> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Icono de registro
               Icon(
                 Icons.person_add_alt_1_outlined,
                 size: 100,
-                color: AppColors
-                    .primaryColor, // Ajusta el color según lo que prefieras
+                color: AppColors.primaryColor,
               ),
               const SizedBox(height: 20),
-
-              // Mensaje informativo
               const Text(
                 'Sign up to start receiving new requests.',
                 textAlign: TextAlign.center,
@@ -42,22 +38,16 @@ class _RegisterPageEspecialistaState extends State<RegisterPageEspecialista> {
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Botón de registro
               ElevatedButton(
                 onPressed: () {
-                  // Aquí puedes agregar la acción que se realiza al presionar el botón
-                  Navigator.pushNamed(
-                      context, '/register'); // Ejemplo de navegación
+                  Navigator.pushNamed(context, '/register');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      const Color(0xff159a9c), // Color del fondo del botón
+                  backgroundColor: const Color(0xff159a9c),
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 100),
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(30), // Bordes redondeados
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
                 child: const Text(

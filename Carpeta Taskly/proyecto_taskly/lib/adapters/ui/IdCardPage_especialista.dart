@@ -27,7 +27,6 @@ class IdCardPageEspecialista extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            // Texto "ID"
             const Text(
               'ID',
               style: TextStyle(
@@ -37,7 +36,6 @@ class IdCardPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            // Campo de texto para el ID
             TextField(
               decoration: InputDecoration(
                 contentPadding:
@@ -52,7 +50,6 @@ class IdCardPageEspecialista extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
-            // Título "ID Card (front)"
             const Text(
               'ID Card (front)',
               style: TextStyle(
@@ -62,7 +59,6 @@ class IdCardPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            // Caja para la tarjeta frontal
             Container(
               height: 100,
               decoration: BoxDecoration(
@@ -78,7 +74,6 @@ class IdCardPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // Título "ID Card (back)"
             const Text(
               'ID Card (back)',
               style: TextStyle(
@@ -88,7 +83,6 @@ class IdCardPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            // Caja para la tarjeta trasera
             Container(
               height: 100,
               decoration: BoxDecoration(
@@ -104,14 +98,11 @@ class IdCardPageEspecialista extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            // Botón Next
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  // Acción para el botón Next
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff159a9c), // Color del botón
+                  backgroundColor: const Color(0xff159a9c),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 40,
                     vertical: 14,

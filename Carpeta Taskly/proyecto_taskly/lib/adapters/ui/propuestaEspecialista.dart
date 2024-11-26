@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
 import 'package:proyecto_taskly/size_config.dart';
 
 class PropuestaEspecialista extends StatefulWidget {
   static const String routeName = 'propuesta';
   final String title;
 
-  const PropuestaEspecialista({super.key, required this.title});
+  final Usuario usuario;
+
+  const PropuestaEspecialista({super.key, required this.title, required this.usuario});
 
   @override
   State<PropuestaEspecialista> createState() => _PropuestaEspecialistaState();
@@ -51,7 +54,10 @@ class _PropuestaEspecialistaState extends State<PropuestaEspecialista> {
             ],
           ),
         ),
-        drawer: const Drawer_menu(username: ''),
+        drawer: Drawer_menu(
+          username: widget.usuario.nombre,
+          usuario: widget.usuario,
+        ),
         body: Column(
           children: [
             // Sección desplazable

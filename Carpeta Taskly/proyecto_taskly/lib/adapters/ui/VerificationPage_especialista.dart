@@ -26,21 +26,18 @@ class VerificationPageEspecialista extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            // Botón About Me
             ElevatedButton(
-              onPressed: () {
-                // Acción para el botón About Me
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFEAF7F5), // Fondo verde claro
+                backgroundColor: const Color(0xFFEAF7F5),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'About me',
                     style: TextStyle(
@@ -54,21 +51,18 @@ class VerificationPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // Botón ID Card
             ElevatedButton(
-              onPressed: () {
-                // Acción para el botón ID Card
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFEAF7F5), // Fondo verde claro
+                backgroundColor: const Color(0xFFEAF7F5),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'ID card',
                     style: TextStyle(
@@ -82,21 +76,18 @@ class VerificationPageEspecialista extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // Botón Catalog of Services
             ElevatedButton(
-              onPressed: () {
-                // Acción para el botón Catalog of Services
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFEAF7F5), // Fondo verde claro
+                backgroundColor: const Color(0xFFEAF7F5),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Catalog of services',
                     style: TextStyle(
@@ -110,14 +101,11 @@ class VerificationPageEspecialista extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            // Botón Done
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  // Acción para el botón Done
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff159a9c), // Color del botón
+                  backgroundColor: const Color(0xff159a9c),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 40,
                     vertical: 14,

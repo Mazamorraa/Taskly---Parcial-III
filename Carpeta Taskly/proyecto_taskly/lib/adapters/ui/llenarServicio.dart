@@ -4,13 +4,15 @@ import 'package:proyecto_taskly/adapters/ui/peticionEspecialista.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
 import 'package:proyecto_taskly/size_config.dart';
 
 class Llenardatos extends StatefulWidget {
   static const String routeName = 'LlenarDatos';
   final String title;
+  final Usuario usuario;
   
-  const Llenardatos({super.key, required this.title});
+  const Llenardatos({super.key, required this.title, required this.usuario});
 
   @override
   State<Llenardatos> createState() => _LlenardatosState();
@@ -57,7 +59,10 @@ class _LlenardatosState extends State<Llenardatos> {
             ],
           ),
         ),
-        drawer: const Drawer_menu(username: ''),
+        drawer: Drawer_menu(
+          username: widget.usuario.nombre,
+          usuario: widget.usuario,
+        ),
         
         body: Padding(
           padding: const EdgeInsets.only(top: 15, left: 10),

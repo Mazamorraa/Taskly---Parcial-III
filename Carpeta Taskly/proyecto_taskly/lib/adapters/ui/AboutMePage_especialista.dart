@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AboutMeEspecialista extends StatelessWidget {
   static const String routeName = 'AboutMeEspecialista';
 
-  const AboutMeEspecialista({Key? key}) : super(key: key);
+  const AboutMeEspecialista({super.key});
 
   @override
   Widget build(BuildContext context) {

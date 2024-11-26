@@ -1,85 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
 import 'package:proyecto_taskly/adapters/ui/login.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Drawer_menu extends StatelessWidget {
+  final Usuario usuario;
   final String username;
-  
-  const Drawer_menu({super.key, required this.username});
+
+  const Drawer_menu({super.key, required this.username, required this.usuario});
 
   @override
   Widget build(BuildContext context) {
+    Future<void> cerrarSesion() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+    }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
+          // Encabezado del Drawer
           DrawerHeader(
             child: Container(
-              width: 500,
-              height: 59,
+              width: double.infinity, // Ajusta el ancho al 100%
+              height: 100, // Ajusta la altura según sea necesario
               decoration: const BoxDecoration(
                 color: Color.fromARGB(181, 255, 255, 255),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15.0, right: 0, top: 10, bottom: 5),
+                    child: CircleAvatar(
+                      radius: 30, // Ajusta el tamaño según sea necesario
+                      child: Text(
+                          usuario.nombre[0]), // Muestra la inicial del nombre
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, right: 0, top: 10, bottom: 5),
-                        child: Container(
-                          width: 65.0,
-                          height: 65.0,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 216, 216, 216),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.person,
-                            size: 30,
-                          ),
+                      Text(
+                        usuario.nombre,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        usuario.email,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 117, 117, 117),
+                          fontSize: 12,
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.only(left: 15, top: 40),
-                              child: Row(children: [
-                                Text(
-                                  username, // Mostrar el nombre de usuario
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ])),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 15, top: 0),
-                            child: Text(
-                              "Client",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 117, 117, 117),
-                                  fontSize: 12),
-                            ),
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 15, top: 5),
-                              child: Row(
-                                children: List.generate(5, (index) {
-                                  return const Icon(
-                                    Icons.star,
-                                    size: 15,
-                                  );
-                                }),
-                              ))
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Row(
+                          children: List.generate(5, (index) {
+                            return const Icon(
+                              Icons.star,
+                              size: 15,
+                            );
+                          }),
+                        ),
                       ),
                     ],
                   ),
@@ -87,18 +78,21 @@ class Drawer_menu extends StatelessWidget {
               ),
             ),
           ),
+          // Otros elementos del Drawer
           ListTile(
-              title: const Text('Home'),
-              leading: const Icon(Icons.home),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, MyHomePage.routeName);
-              }),
+            title: const Text('Home'),
+            leading: const Icon(Icons.home),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, MyHomePage.routeName);
+            },
+          ),
           ListTile(
-              title: const Text('Exit'),
-              leading: const Icon(Icons.exit_to_app),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, Login.routeName);
-              }),
+            title: const Text('Exit'),
+            leading: const Icon(Icons.exit_to_app),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, Login.routeName);
+            },
+          ),
         ],
       ),
     );

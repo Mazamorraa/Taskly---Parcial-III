@@ -1,19 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_taskly/adapters/repository/usuarioRepository.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
 import 'package:proyecto_taskly/adapters/ui/register.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
+import 'package:proyecto_taskly/domain/repository/usuario_repository.dart';
 import 'package:proyecto_taskly/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   static const String routeName = 'login';
   final String title;
 
+
+
+  const Login({super.key, required this.title});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final UsuarioRepository usuarioRepository = UsuarioRepositoryImpl();
 
-  Login(
-      {super.key, usernameController, passwordController, required this.title});
+
+  Future<void> _login() async {
+    final String username = usernameController.text;
+    final String password = passwordController.text;
+
+    if (username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Por favor, complete todos los campos'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+
+    try {
+      final List<Usuario> usuarios = await usuarioRepository.obtenerUsuario();
+      final usuario = usuarios.firstWhere(
+        (user) => user.nombre == username && user.contrasena == password,
+        orElse: () => throw Exception('Usuario no encontrado'),
+      );
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('usuario_id', usuario.id.toString());
+    prefs.setString('usuario_nombre', usuario.nombre);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(usuario: usuario, title: '',),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error al iniciar sesión: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +102,16 @@ class Login extends StatelessWidget {
 
                 // User text field
                 MyTextfield(
-                    controller: usernameController,
-                    hintText: 'Insert user...',
-                    obscureText: false,
-                    color: AppColors.Subtitulos,
-                    altura: 50,
-                    ancho: 350,
-                    label: 'hola',icon: Icons.abc, iconColor: AppColors.TextField,),
+                  controller: usernameController,
+                  hintText: 'Insert user...',
+                  obscureText: false,
+                  color: AppColors.Subtitulos,
+                  altura: 50,
+                  ancho: 350,
+                  label: 'hola',
+                  icon: Icons.abc,
+                  iconColor: AppColors.TextField,
+                ),
                 const SizedBox(height: 10),
 
                 // Password label
@@ -71,13 +128,16 @@ class Login extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: MyTextfield(
-                      controller: passwordController,
-                      hintText: 'Insert password...',
-                      obscureText: false,
-                      color: AppColors.Subtitulos,
-                      altura: 50,
-                      ancho: 350,
-                      label: 'hola', icon: Icons.abc, iconColor: AppColors.TextField,),
+                    controller: passwordController,
+                    hintText: 'Insert password...',
+                    obscureText: true,
+                    color: AppColors.Subtitulos,
+                    altura: 50,
+                    ancho: 350,
+                    label: 'hola',
+                    icon: Icons.abc,
+                    iconColor: AppColors.TextField,
+                  ),
                 ),
                 const SizedBox(height: 24),
 
@@ -87,7 +147,8 @@ class Login extends StatelessWidget {
                   altura: 60,
                   ancho: 280,
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, MyHomePage.routeName);
+                    _login();
+
                   },
                 ),
 
@@ -104,8 +165,7 @@ class Login extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey,
-                      decoration: TextDecoration
-                          .underline, 
+                      decoration: TextDecoration.underline,
                     ),
                   ),
                 )

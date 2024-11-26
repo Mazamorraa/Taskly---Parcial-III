@@ -72,12 +72,12 @@ class CatalogOfServicesPage2Especialista extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context); // Acción para regresar
+                Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                backgroundColor: const Color(0xff159a9c), // Color del botón
+                backgroundColor: const Color(0xff159a9c),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
