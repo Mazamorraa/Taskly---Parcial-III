@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   //Colores predeterminados
 
   static const Color background = Color(0xFFD9D9D9);
@@ -16,4 +14,6 @@ class AppColors {
 
   static const Color yes = Color(0xFF14A619);
   static const Color no = Color(0xFFBC1313);
+
+  static var primaryColor;
 }

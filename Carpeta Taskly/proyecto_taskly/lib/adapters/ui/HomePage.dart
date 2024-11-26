@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Lista de pantallas
     final screens = [
-      SingleChildScrollView( 
+      SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -47,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 5, right: 5),
                       child: Container(
                         width: 500,
                         height: 89,
@@ -92,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ),
                                         ])),
                                     const Padding(
-                                      padding: EdgeInsets.only(left: 25, top: 0),
+                                      padding:
+                                          EdgeInsets.only(left: 25, top: 0),
                                       child: MyText(
                                         label: 'Looking for specialist',
                                         size: 12,
@@ -100,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
-                                    const Padding                                 (
+                                    const Padding(
                                       padding: EdgeInsets.only(left: 25),
                                       child: RatingStars(rating: 3.5),
                                     )
@@ -210,7 +212,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
-                                                  
                         ],
                       ),
                     ),
@@ -280,8 +281,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
           selectedItemColor: Colors.grey,
-          selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.grey),
+          selectedLabelStyle:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
         ),
       ),
     );
