@@ -3,13 +3,15 @@ import 'package:proyecto_taskly/adapters/ui/orders.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
 import 'package:proyecto_taskly/size_config.dart';
 
 class MyHomePage extends StatefulWidget {
   static const String routeName = 'MyHomePage';
   final String title;
+  final Usuario usuario;
 
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.usuario});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -18,8 +20,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController searchBarController = TextEditingController();
-  final String username = 'Sebastian';
-
   int selectedIndex = 0;
 
   @override
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Lista de pantallas
     final screens = [
-      SingleChildScrollView( 
+      SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             left: 25, top: 20),
                                         child: Row(children: [
                                           MyText(
-                                            label: username,
+                                            label: widget.usuario.nombre,
                                             size: 20,
                                             color: AppColors.black,
                                             fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
-                                    const Padding                                 (
+                                    const Padding(
                                       padding: EdgeInsets.only(left: 25),
                                       child: RatingStars(rating: 3.5),
                                     )
@@ -210,7 +210,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
-                                                  
                         ],
                       ),
                     ),
@@ -255,7 +254,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        drawer: Drawer_menu(username: username),
+        drawer: Drawer_menu(
+          username: widget.usuario.nombre,
+          usuario: widget.usuario,
+        ),
         body: IndexedStack(
           index: selectedIndex,
           children: screens,

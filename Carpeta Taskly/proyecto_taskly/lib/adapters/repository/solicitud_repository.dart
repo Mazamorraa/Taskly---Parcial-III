@@ -1,16 +1,34 @@
-
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:proyecto_taskly/domain/entities/cliente.dart';
-import 'package:proyecto_taskly/domain/entities/especialista.dart';
-import 'package:proyecto_taskly/domain/entities/servicio.dart';
+
 import 'package:proyecto_taskly/domain/entities/solicitudes.dart';
 import 'package:proyecto_taskly/domain/repository/solicitud_repository.dart';
-
 
 class SolicitudRepositoryImpl implements SolicitudRepository {
   @override
   Future<List<Solicitud>> obtenerSolicitudes() async {
+    final String response = await rootBundle.loadString('assets/data.json');
+    final data = json.decode(response);
+
+    List<Solicitud> solicitudes = [];
+
+    if (data['clientes'] != null) {
+      List<dynamic> clientesData = data['clientes'];
+
+      for (var cliente in clientesData) {
+        if (cliente['solicitudes'] != null) {
+          for (var solicitudJson in cliente['solicitudes']) {
+            solicitudes.add(Solicitud.fromJson(solicitudJson));
+          }
+        }
+      }
+    }
+
+    return solicitudes;
+  }
+}
+
+  /*Future<List<Solicitud>> obtenerSolicitudes() async {
     final String response = await rootBundle.loadString('assets/data.json');
     final Map<String, dynamic> data = json.decode(response);
 
@@ -69,8 +87,8 @@ class SolicitudRepositoryImpl implements SolicitudRepository {
         servicio: servicio,
       );
     }).toList();
-  }
-}
+  }*/
+
 
 
 

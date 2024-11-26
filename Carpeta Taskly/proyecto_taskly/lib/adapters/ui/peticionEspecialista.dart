@@ -3,13 +3,16 @@ import 'package:proyecto_taskly/adapters/ui/propuestaEspecialista.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/drawer.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
+import 'package:proyecto_taskly/domain/entities/usuario.dart';
 import 'package:proyecto_taskly/size_config.dart';
 
 class Peticionespecialista extends StatefulWidget {
   static const String routeName = 'peticiones';
   final String title;
 
-  const Peticionespecialista({super.key, required this.title});
+  final Usuario usuario;
+
+  const Peticionespecialista({super.key, required this.title, required this.usuario});
 
   @override
   State<Peticionespecialista> createState() => _PeticionespecialistaState();
@@ -52,7 +55,10 @@ class _PeticionespecialistaState extends State<Peticionespecialista> {
           ],
         ),
       ),
-      drawer: Drawer_menu(username: username),
+      drawer: Drawer_menu(
+          username: widget.usuario.nombre,
+          usuario: widget.usuario,
+        ),
       body: Column(
         children: [
           const Row(

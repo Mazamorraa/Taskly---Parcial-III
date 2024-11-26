@@ -1,102 +1,58 @@
 {
-  "usuarios": [
+  "clientes": [
     {
-      "tipoUsuario": "Cliente",
       "id": 1,
-      "nombre": "Carlos Perez",
-      "email": "carlos@example.com",
-      "contrasena": "1234",
+      "nombre": "Juan Perez",
+      "email": "juan.perez@example.com",
+      "contrasena": "123456",
       "telefono": "123456789",
       "direccion": "Calle Falsa 123",
       "calificacion": 4.5,
       "solicitudes": [
         {
-          "id": 101,
+          "id": 1,
+          "estado": "Pendiente",
+          "precioFinal": 100.0,
+          "fechaSolicitud": "2024-11-25T16:00:00Z",
+          "direccion": "Calle Falsa 123",
+          "servicio": {
+            "id": 1,
+            "nombre": "Servicio 1",
+            "descripcion": "Descripción del servicio 1",
+            "precio": 100
+          },
           "especialista": {
             "id": 2,
-            "nombre": "Ana Gomez"
+            "nombre": "Ana Gomez",
+            "email": "ana.gomez@example.com",
+            "contrasena": "abcdef",
+            "telefono": "987654321",
+            "direccion": "Avenida Siempre Viva 742",
+            "calificacion": 4.7,
+            "solicitudes": [],
+            "profesion": "Electricista",
+            "servicios": [
+              {
+                "id": 1,
+                "nombre": "Instalación eléctrica",
+                "descripcion": "Instalación de sistemas eléctricos",
+                "precio": 200
+              }
+            ]
           },
-          "estado": "Pendiente",
-          "precioFinal": 45.0,
-          "fechaSolicitud": "2024-11-11",
-          "direccion": "Calle Verdadera 456",
-          "servicio": {
-            "id": 501,
-            "nombre": "Servicio Plomero",
-            "descripcion": "Servicio de plomería profesional.",
-            "precio": 50.0
-          }
-        }
-      ]
-    },
-    {
-      "tipoUsuario": "Especialista",
-      "id": 2,
-      "nombre": "Ana Gomez",
-      "email": "ana@example.com",
-      "contrasena": "5678",
-      "telefono": "987654321",
-      "direccion": "Calle Verdadera 456",
-      "calificacion": 4.8,
-      "profesion": "Plomero",
-      "servicios": [
-        {
-          "id": 501,
-          "nombre": "Servicio Plomero",
-          "descripcion": "Servicio de plomería profesional.",
-          "precio": 50.0
-        }
-      ],
-      "solicitudes": [
-        {
-          "id": 101,
           "cliente": {
             "id": 1,
-            "nombre": "Carlos Perez"
-          },
-          "estado": "Pendiente",
-          "precioFinal": 45.0,
-          "fechaSolicitud": "2024-11-11",
-          "direccion": "Calle Verdadera 456",
-          "servicio": {
-            "id": 501,
-            "nombre": "Servicio Plomero",
-            "descripcion": "Servicio de plomería profesional.",
-            "precio": 50.0
+            "nombre": "Juan Perez",
+            "email": "juan.perez@example.com",
+            "contrasena": "123456",
+            "telefono": "123456789",
+            "direccion": "Calle Falsa 123",
+            "calificacion": 4.5,
+            "solicitudes": []
           }
         }
       ]
-    }
-  ],
-  "servicios": [
-    {
-      "id": 501,
-      "nombre": "Servicio Plomero",
-      "descripcion": "Servicio de plomería profesional.",
-      "precio": 50.0
-    }
-  ],
-  "solicitudes": [
-    {
-      "id": 101,
-      "cliente": {
-        "id": 1,
-        "nombre": "Carlos Perez"
-      },
-      "especialista": {
-        "id": 2,
-        "nombre": "Ana Gomez"
-      },
-      "estado": "Pendiente",
-      "precioFinal": 45.0,
-      "fechaSolicitud": "2024-11-11",
-      "direccion": "Calle Verdadera 456",
-      "servicio": {
-        "id": 501,
-        "nombre": "Servicio Plomero",
-        "descripcion": "Servicio de plomería profesional.",
-        "precio": 50.0
-      }
     }
   ]
 }
+
