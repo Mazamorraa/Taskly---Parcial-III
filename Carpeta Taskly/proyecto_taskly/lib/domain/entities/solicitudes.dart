@@ -2,8 +2,6 @@ import 'package:proyecto_taskly/domain/entities/cliente.dart';
 import 'package:proyecto_taskly/domain/entities/especialista.dart';
 import 'package:proyecto_taskly/domain/entities/servicio.dart';
 
-
-
 class Solicitud {
   final int id;
   final String estado;
@@ -33,9 +31,9 @@ class Solicitud {
         servicio: Servicio.fromJson(json["servicio"]),
         especialista: Especialista.fromJson(json["especialista"]),
         cliente: Cliente.fromJson(json["cliente"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "estado": estado,
         "precioFinal": precioFinal,
@@ -44,5 +42,5 @@ class Solicitud {
         "servicio": servicio.toJson(),
         "especialista": especialista.toJson(),
         "cliente": cliente.toJson(),
-    };
+      };
 }

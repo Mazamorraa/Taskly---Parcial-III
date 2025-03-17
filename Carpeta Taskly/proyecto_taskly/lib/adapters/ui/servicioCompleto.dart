@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
 
 class Serviciocompleto extends StatefulWidget {
-  static const String routeName = 'ServicioCompleto';
+  static const String routeName = '/serviciocompleto';
   final String? title;
 
   final String nombre;
   final String descripcion;
   final String precio;
 
-  const Serviciocompleto(
-      {super.key,
-      required this.nombre,
-      required this.descripcion,
-      required this.precio,
-      this.title});
+  const Serviciocompleto({
+    super.key,
+    required this.nombre,
+    required this.descripcion,
+    required this.precio,
+    this.title,
+  });
 
   @override
   State<Serviciocompleto> createState() => _ServiciocompletoState();
@@ -27,16 +29,6 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.AppBarColor,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu, color: Colors.teal),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,6 +37,17 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
           children: [
             Row(
               children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, MyHomePage.routeName);
+                  },
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.black,
+                    size: 25,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 25.0, right: 0, top: 10, bottom: 5),
@@ -63,17 +66,19 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
                 ),
                 Column(
                   children: [
-                    Text(
-                      widget.nombre,
-                      style: const TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Nombre: Sebastian Andrade Roa',
+                              style: const TextStyle(fontSize: 20)),
+                          const SizedBox(height: 10),
+                          Text('Precio: ${widget.precio}',
+                              style: const TextStyle(fontSize: 16)),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      widget.descripcion,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 10),
                   ],
                 ),
               ],
@@ -85,10 +90,12 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
                 size: 12,
                 color: AppColors.Subtitulos,
                 fontWeight: FontWeight.bold),
-                SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             const Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const Column(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
                 children: [
                   Row(
                     children: [
@@ -136,7 +143,10 @@ class _ServiciocompletoState extends State<Serviciocompleto> {
             ),
             Text(
               'Precio: ${widget.precio}',
-              style: const TextStyle(fontSize: 16, color: Colors.green),
+              style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),

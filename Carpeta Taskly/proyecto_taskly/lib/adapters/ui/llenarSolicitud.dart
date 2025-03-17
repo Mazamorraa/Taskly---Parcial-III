@@ -1,3 +1,4 @@
+// filepath: c:\Users\RYZEN\Desktop\proyecto taskly\Taskly---Parcial-III\Carpeta Taskly\proyecto_taskly\lib\adapters\ui\llenarSolicitud.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
@@ -116,7 +117,7 @@ class _LlenardatosState extends State<Llenardatos> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error al registrar la solicitud: $e'),
+          content: Text('Error al registrar la solicitud: ${e.toString()}'),
           backgroundColor: Colors.red,
         ),
       );
@@ -247,21 +248,21 @@ class _LlenardatosState extends State<Llenardatos> {
                       ),
                       const SizedBox(height: 30),
 
-                     const  Align(
-                      alignment: Alignment.centerLeft,
+                      const Align(
+                        alignment: Alignment.centerLeft,
                         child: MyText(
-                          label: 'When should it be done?',
-                          size: 20,
-                          color: AppColors.black,
-                          fontWeight: FontWeight.bold),
-
+                            label: 'When should it be done?',
+                            size: 20,
+                            color: AppColors.black,
+                            fontWeight: FontWeight.bold),
                       ),
-
-                      
 
                       ListTile(
                         title: Text(
-                          '${fechaController == null ? 'Add a date' : DateFormat('yyyy-MM-dd').format(fechaController!)}',
+                          fechaController == null
+                              ? 'Add a date'
+                              : DateFormat('yyyy-MM-dd')
+                                  .format(fechaController!),
                         ),
                         trailing: const Icon(Icons.edit_calendar),
                         onTap: () async {

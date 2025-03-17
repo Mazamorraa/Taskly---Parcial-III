@@ -6,9 +6,5 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = PreferenciasTaskly();
   await prefs.initPrefs();
-  runApp(const MyApp()); 
+  runApp(const MyApp());
 }
-
-
-
-

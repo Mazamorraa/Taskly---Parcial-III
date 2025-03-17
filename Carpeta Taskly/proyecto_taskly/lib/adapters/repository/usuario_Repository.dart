@@ -6,14 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UsuarioRepositoryImpl implements UsuarioRepository {
   @override
-// Agregar usuario en SharedPreferences
   Future<void> agregarCliente(Cliente nuevoCliente) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Cargar usuarios existentes
     List<String> usuariosString = prefs.getStringList('usuarios') ?? [];
 
-    // Agregar nuevo cliente
     usuariosString.add(json.encode({
       'id': nuevoCliente.id,
       'nombre': nuevoCliente.nombre,

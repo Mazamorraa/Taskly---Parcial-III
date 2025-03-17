@@ -4,7 +4,6 @@ import 'package:proyecto_taskly/adapters/ui/VerificationPage_especialista.dart';
 import 'package:proyecto_taskly/adapters/ui/login.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
 import 'package:proyecto_taskly/domain/entities/usuario.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Drawer_menu extends StatelessWidget {
   final Usuario usuario;
@@ -14,10 +13,10 @@ class Drawer_menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> cerrarSesion() async {
+    /*Future<void> cerrarSesion() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.clear();
-    }
+    }*/
 
     return Drawer(
       child: ListView(
@@ -26,8 +25,8 @@ class Drawer_menu extends StatelessWidget {
           // Encabezado del Drawer
           DrawerHeader(
             child: Container(
-              width: double.infinity, 
-              height: 100, 
+              width: double.infinity,
+              height: 100,
               decoration: const BoxDecoration(
                 color: Color.fromARGB(181, 255, 255, 255),
                 borderRadius: BorderRadius.only(
@@ -42,22 +41,21 @@ class Drawer_menu extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 0, top: 10, bottom: 5),
                     child: CircleAvatar(
-                      radius: 30, 
-                      child: Text(
-                          usuario.nombre[0]), 
+                      radius: 30,
+                      child: Text(usuario.nombre[0]),
                     ),
                   ),
                   const SizedBox(width: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(padding: EdgeInsets.only(top: 30),
-                      child: Text(
-                        usuario.nombre,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Text(
+                          usuario.nombre,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(),
@@ -69,7 +67,6 @@ class Drawer_menu extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: Row(
@@ -102,13 +99,19 @@ class Drawer_menu extends StatelessWidget {
               Navigator.pushReplacementNamed(context, Login.routeName);
             },
           ),
-          SizedBox(height: 600,),
+          const SizedBox(
+            height: 600,
+          ),
 
-          MyButton(text: 'Specialist mode', altura: 60, ancho: 250, onTap: () {
-
-            Navigator.pushReplacementNamed(context, VerificationPageEspecialista.routeName);
-            
-          },),
+          MyButton(
+            text: 'Specialist mode',
+            altura: 60,
+            ancho: 250,
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, VerificationPageEspecialista.routeName);
+            },
+          ),
         ],
       ),
     );

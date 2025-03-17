@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_taskly/adapters/repository/usuarioRepository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_taskly/adapters/repository/usuario_Repository.dart';
 import 'package:proyecto_taskly/adapters/ui/HomePage.dart';
 import 'package:proyecto_taskly/adapters/ui/register.dart';
+import 'package:proyecto_taskly/aplication/bloc/orders_bloc.dart';
+import 'package:proyecto_taskly/aplication/bloc/orders_event.dart';
+import 'package:proyecto_taskly/aplication/bloc/orders_state.dart';
 import 'package:proyecto_taskly/components/colors.dart';
 import 'package:proyecto_taskly/components/widgets.dart';
 import 'package:proyecto_taskly/domain/entities/usuario.dart';
@@ -13,8 +17,6 @@ class Login extends StatefulWidget {
   static const String routeName = 'login';
   final String title;
 
-
-
   const Login({super.key, required this.title});
 
   @override
@@ -25,7 +27,6 @@ class _LoginState extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final UsuarioRepository usuarioRepository = UsuarioRepositoryImpl();
-
 
   Future<void> _login() async {
     final String username = usernameController.text;
@@ -41,7 +42,6 @@ class _LoginState extends State<Login> {
       return;
     }
 
-
     try {
       final List<Usuario> usuarios = await usuarioRepository.obtenerUsuario();
       final usuario = usuarios.firstWhere(
@@ -50,13 +50,19 @@ class _LoginState extends State<Login> {
       );
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('usuario_id', usuario.id.toString());
-    prefs.setString('usuario_nombre', usuario.nombre);
+      prefs.setString('usuario_id', usuario.id.toString());
+      prefs.setString('usuario_nombre', usuario.nombre);
+
+      context.read<OrdersBloc>().add(ShowLoading());
+      await Future.delayed(Duration(seconds: 2));
 
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MyHomePage(usuario: usuario, title: '',),
+          builder: (context) => MyHomePage(
+            usuario: usuario,
+            title: '',
+          ),
         ),
       );
     } catch (e) {
@@ -78,98 +84,107 @@ class _LoginState extends State<Login> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Logo
-                Image.asset(
-                  'assets/img/taskly_logo.jpg',
-                  width: getProportionateScreenWidth(200),
-                  height: getProportionateScreenHeight(200),
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 10),
-
-                // User label
-                const Align(
-                    alignment: Alignment.centerLeft,
-                    child: MyText(
-                        label: 'User',
-                        size: 20,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold)),
-                const SizedBox(height: 10),
-
-                // User text field
-                MyTextfield(
-                  controller: usernameController,
-                  hintText: 'Insert user...',
-                  obscureText: false,
-                  color: AppColors.Subtitulos,
-                  altura: 50,
-                  ancho: 350,
-                  label: 'hola',
-                  icon: Icons.abc,
-                  iconColor: AppColors.TextField,
-                ),
-                const SizedBox(height: 10),
-
-                // Password label
-                const Align(
-                    alignment: Alignment.centerLeft,
-                    child: MyText(
-                        label: 'Password',
-                        size: 20,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold)),
-                const SizedBox(height: 10),
-
-                // User text field
-                Align(
-                  alignment: Alignment.center,
-                  child: MyTextfield(
-                    controller: passwordController,
-                    hintText: 'Insert password...',
-                    obscureText: true,
-                    color: AppColors.Subtitulos,
-                    altura: 50,
-                    ancho: 350,
-                    label: 'hola',
-                    icon: Icons.abc,
-                    iconColor: AppColors.TextField,
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                // Log in button
-                MyButton(
-                  text: 'Log in',
-                  altura: 60,
-                  ancho: 280,
-                  onTap: () {
-                    _login();
-
-                  },
-                ),
-
-                const SizedBox(height: 20),
-
-                // Register text
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                        context, RegisterPage.routeName);
-                  },
-                  child: const Text(
-                    "You don't have an account? Register now",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      decoration: TextDecoration.underline,
+            child: BlocConsumer<OrdersBloc, OrdersState>(
+              listener: (context, state) {
+                if (state is OrdersInitial) {}
+              },
+              builder: (context, state) {
+                if (state is Loading) {
+                  return CircularProgressIndicator();
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Logo
+                    Image.asset(
+                      'assets/img/taskly_logo.jpg',
+                      width: getProportionateScreenWidth(200),
+                      height: getProportionateScreenHeight(200),
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                )
-              ],
+                    const SizedBox(height: 10),
+
+                    // User label
+                    const Align(
+                        alignment: Alignment.centerLeft,
+                        child: MyText(
+                            label: 'User',
+                            size: 20,
+                            color: AppColors.black,
+                            fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 10),
+
+                    // User text field
+                    MyTextfield(
+                      controller: usernameController,
+                      hintText: 'Insert user...',
+                      obscureText: false,
+                      color: AppColors.Subtitulos,
+                      altura: 50,
+                      ancho: 350,
+                      label: 'hola',
+                      icon: Icons.abc,
+                      iconColor: AppColors.TextField,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Password label
+                    const Align(
+                        alignment: Alignment.centerLeft,
+                        child: MyText(
+                            label: 'Password',
+                            size: 20,
+                            color: AppColors.black,
+                            fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 10),
+
+                    // User text field
+                    Align(
+                      alignment: Alignment.center,
+                      child: MyTextfield(
+                        controller: passwordController,
+                        hintText: 'Insert password...',
+                        obscureText: true,
+                        color: AppColors.Subtitulos,
+                        altura: 50,
+                        ancho: 350,
+                        label: 'hola',
+                        icon: Icons.abc,
+                        iconColor: AppColors.TextField,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Log in button
+                    MyButton(
+                      text: 'Log in',
+                      altura: 60,
+                      ancho: 280,
+                      onTap: () {
+                        _login();
+                      },
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Register text
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, RegisterPage.routeName);
+                      },
+                      child: const Text(
+                        "You don't have an account? Register now",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              },
             ),
           ),
         ),

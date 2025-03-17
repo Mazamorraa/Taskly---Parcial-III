@@ -1,4 +1,3 @@
-
 import 'package:proyecto_taskly/domain/entities/solicitudes.dart';
 import 'package:proyecto_taskly/domain/entities/usuario.dart';
 
@@ -17,7 +16,8 @@ class Cliente extends Usuario {
   List<Solicitud> obtenerSolicitudes() {
     return solicitudes;
   }
-    factory Cliente.fromJson(Map<String, dynamic> json) => Cliente(
+
+  factory Cliente.fromJson(Map<String, dynamic> json) => Cliente(
         id: json["id"],
         nombre: json["nombre"],
         email: json["email"],
@@ -25,10 +25,10 @@ class Cliente extends Usuario {
         telefono: json["telefono"],
         direccion: json["direccion"],
         calificacion: json["calificacion"].toDouble(),
-        solicitudes: List<Solicitud>.from(json["solicitudes"].map((x) => Solicitud.fromJson(x))),
-    );
+        solicitudes: [],
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "nombre": nombre,
         "email": email,
@@ -36,8 +36,6 @@ class Cliente extends Usuario {
         "telefono": telefono,
         "direccion": direccion,
         "calificacion": calificacion,
-        "solicitudes": List<dynamic>.from(solicitudes.map((x) => x.toJson())),
-    };
-
-
+        "solicitudes": [],
+      };
 }

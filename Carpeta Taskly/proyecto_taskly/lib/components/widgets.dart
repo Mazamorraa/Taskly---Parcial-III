@@ -23,7 +23,9 @@ class MyTextfield extends StatelessWidget {
     required this.color,
     required this.altura,
     required this.ancho,
-    required String label,  this.icon,  this.iconColor,
+    required String label,
+    this.icon,
+    this.iconColor,
   });
 
   @override
@@ -49,7 +51,10 @@ class MyTextfield extends StatelessWidget {
               vertical: 15,
               horizontal: 20,
             ),
-            suffixIcon: Icon(icon, color: iconColor,),
+            suffixIcon: Icon(
+              icon,
+              color: iconColor,
+            ),
           ),
         ),
       ),
@@ -227,215 +232,213 @@ class Perfil extends StatelessWidget {
   final String descripcion;
   final String precio;
 
-  const Perfil({super.key, required this.nombre, required this.descripcion, required this.precio});
+  const Perfil(
+      {super.key,
+      required this.nombre,
+      required this.descripcion,
+      required this.precio});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.grey[200],
+                      child: const Icon(
+                        Icons.account_circle,
+                        size: 70,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 25),
 
+                  // Nombre y detalles
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyText(
+                          label: 'Sebastian Andrade Roa',
+                          fontWeight: FontWeight.bold,
+                          size: 30,
+                          color: AppColors.black,
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Plumber ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '|',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Services 164',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '|',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                RatingStars(rating: 2),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '(4.3)',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 5),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Descripción
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: MyText(
+                label:
+                    'professional specialized in the installation, repair, and maintenance of piping systems that supply water...',
+                size: 14,
+                fontWeight: FontWeight.bold,
+                color: AppColors.Subtitulos,
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
                 Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.grey[200],
-                    child: const Icon(
-                      Icons.account_circle,
-                      size: 70,
-                      color: Colors.black54,
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: GestureDetector(
+                    onTap: () => {},
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Container(
+                        width: getProportionateScreenWidth(120),
+                        height: getProportionateScreenHeight(40),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.red,
+                            size: 30,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 25),
-      
-                // Nombre y detalles
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MyText(
-                        label: 'Sebastian Andrade Roa',
-                        fontWeight: FontWeight.bold,
-                        size: 30,
-                        color: AppColors.black,
+                const SizedBox(
+                  width: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: GestureDetector(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Serviciocompleto(
+                            nombre: nombre,
+                            descripcion: descripcion,
+                            precio: precio,
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Plumber ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      Navigator.pushReplacementNamed(
+                          context, Serviciocompleto.routeName),
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Container(
+                        width: getProportionateScreenWidth(120),
+                        height: getProportionateScreenHeight(40),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.green,
+                            width: 2,
                           ),
-                          Text(
-                            '|',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.green,
+                            size: 30,
                           ),
-                          Text(
-                            'Services 164',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '|',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              RatingStars(rating: 2),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '(4.3)',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black54),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 5),
-                        ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-      
-          // Descripción
-          const Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: MyText(
-              label:
-                  'professional specialized in the installation, repair, and maintenance of piping systems that supply water...',
-              size: 14,
-              fontWeight: FontWeight.bold,
-              color: AppColors.Subtitulos,
-            ),
-          ),
-      
-          const SizedBox(height: 10),
-      
-        
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-         
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: GestureDetector(
-                  onTap: () => {
-                    
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      width: getProportionateScreenWidth(120),
-                      height: getProportionateScreenHeight(40),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.red, 
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.close, 
-                          color: Colors.red, 
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10,),
-      
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                
-                child: GestureDetector(
-                  onTap: () => {
-                    Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Serviciocompleto(
-                nombre: nombre,
-                descripcion: descripcion,
-                precio: precio,
-              ),
-            ),
-          ),
-          Navigator.pushReplacementNamed(context, Serviciocompleto.routeName),
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Container(
-                      width: getProportionateScreenWidth(120),
-                      height: getProportionateScreenHeight(40),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.green,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.check,
-                          color: Colors.green,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),),
+          ],
+        ),
+      ),
     );
-                  
   }
 }

@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Housekeeper',
                                   numeroEspecialistas: '5000 specialist',
@@ -179,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Computer repairs',
                                   numeroEspecialistas: '5000 specialist',
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Vehicle repairs',
                                   numeroEspecialistas: '5000 specialist',
@@ -219,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Air condicioner maintenance',
                                   numeroEspecialistas: '5000 specialist',
@@ -237,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Carta(
                                   descripcion: 'Loaders',
                                   numeroEspecialistas: '5000 specialist',
